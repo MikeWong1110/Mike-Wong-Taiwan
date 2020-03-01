@@ -1,0 +1,92 @@
+# Reseting the game
+import random
+chance = random.randint(1,2)
+yes_no = ["yes", "no"]
+directions = ["left", "right", "forward", "backward"]
+to_do1 = ["lean backward", "struggle", "give up"]
+to_do2 = ["pick up a flower","throw a rock","run"]
+save_response = ""
+ 
+# Intro of game
+name = input("What is your name, adventurer?\n")
+print("Greetings, " + name + ". Let us go on a quest!")
+print("You find yourself on the edge of a dark forest.")
+print("Can you find your way through?\n")
+# Start of game
+response = ""
+while response not in yes_no:
+    response = input("Would you like to step into the forest?\nyes/no\n")
+    if response == "yes":
+        print("You head into the forest. You hear crows cawwing in the distance.\n")
+        break
+    elif response == "no":
+        print("You are not ready for this quest. Goodbye, " + name + ".")
+    else: 
+        print("I didn't understand that.\n")
+
+    response = ""
+while response not in directions:
+    if save_response == "right":
+        break
+    print("To your left, you see a bear.")
+    print("To your right, there is more forest.")
+    print("There is a rock wall directly in front of you.")
+    print("Behind you is the forest exit.\n")
+    response = input("What direction do you move?\nleft/right/forward/backward\n")
+    if response == "left":
+        print("The bear eats you. Farewell, " + name + ".")
+        break
+    elif response == "right":
+        if save_response == "right":
+            break
+        save_response = response
+        if chance == 1:
+            while response not in to_do1:
+                response = ""
+                print("You head deeper into the forest.\n")
+                print('You find yourself in a puddle of quicksand.\n Quick! You gotta do something ' + name + "!")
+                response = input("What do you do? \nlean backwards/struggle/give up")
+                if response == 'lean backwards':
+                    print("You lean backward, making you body flow up from the quicksand.\n  ")
+                    print("Once you come up from the quicksand, you freak out and run as quick as possible. So you run straight into a picky tree.")
+                    print("You died "+name)
+                    break
+                elif response == "struggle":
+                    print("You struggle to get out of the quicksand, making you sink even quicker.\n")
+                    print("You sink so fast, you enter a mysterious world of diamonds. YAY!\n")
+                    print("You won!\n")
+                    print("Or did you...")
+                    break
+
+                elif response == "give up":
+                    print("You sink slowly into the quicksand, and you run out of breath")
+                    break
+                else:
+                    print("I didn't understand that.\n")
+        elif chance == 2:
+            while response not in to_do2:
+                response = ""
+                print("You run into a orc, carrying a stone club.")
+                print("He sees you, turning hostile. He runs at you.")
+                response = input("What do you do?\npick up a flower/throw a rock/run\n")
+                if response == "pick up a flower":
+                    print("You pick up a rose, hoping it will stop the orc.")
+                    print("It did, you figure out all the orc was doing is to find a friend")
+                    break
+                elif response == "throw a rock":
+                    print("You throw a rock at the orc, he deflects with the club and it hits you.")
+                    break
+                elif response == "run":
+                    print("Your speed is no match for the orc, he clubs you")
+                    break
+
+                else:
+                    print("I didn't understand that\n")
+    elif response == "forward":
+        print("You cannot scale the wall.\n")
+        response = "" 
+    elif response == "backward":
+        print("You leave the forest. Goodbye, " + name + ".")
+        break
+    else:
+        print("I didn't understand that.\n")
